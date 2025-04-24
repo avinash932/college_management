@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sms</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Header Styles */
+
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: url('https://images.shiksha.com/mediadata/images/1595832923phpBpL03E.jpeg') no-repeat center center/cover;
+            position: relative;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: #6c757d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary), #224abe);
+            color: rgb(33, 31, 31);
+        }
+
+        .testimonials p {
+            color: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .client-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+
+        .client-name {
+            font-weight: 600;
+        }
+
+        .client-role {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 5rem 0;
+            text-align: center;
+            background-color: white;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #6c757d;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    {% include 'layout/base.html' %}
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="container">
+                <h1>School Of Management Sciences</h1>
+                <p>Streamline your institution's operations with our all-in-one platform designed for colleges and
+                    universities. Manage students, faculty, courses, and more with ease.</p>
+                    
+                    {% if user.is_authenticated %}
+                        
+                    <a href="{% url 'logout' %}" class="btn" style="margin-right: 1rem;">logout</a>
+                    {% else %}
+                    <a href="{% url 'login' %}" class="btn" style="margin-right: 1rem;">login</a>
+                    {% endif %}
+                <a href="{% url 'tour' %}" class="btn btn-outline">Tour</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Powerful Features</h2>
+                <p>Our comprehensive platform offers everything you need to efficiently manage your educational
+                    institution</p>
+            </div>
+            <div class="features-grid">
+                <a href="http://127.0.0.1:8000/student" style="text-decoration: none;">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Student Management</h3>
+                        <p>Easily manage student records, attendance, and performance with our intuitive interface.</p>
+                    </div>
+                </a>
+                <div class="feature-card">
+                    <a href="{% url 'faculty' %}" style="text-decoration: none;">
+                        <div class="feature-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3>Faculty Portal</h3>
+                        <p>Empower your faculty with tools for course management, grading, and communication.</p>
+                    </a>
+                </div>
+                <div class="feature-card">
+                    <a href="{% url 'courses' %}" style="text-decoration: none;">
+                        <div class="feature-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3>Course offered</h3>
+                        <p>Create, schedule, and manage courses with our powerful course management system.</p>
+                    </a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'fee' %}" style="text-decoration: none;">
+                            {% else %}
+                            <a href="{% url 'fee_structure' %}" style="text-decoration: none;">
+                            
+                            {% endif %}
+                            <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>Fee Management</h3>
+                    <p>Streamline fee collection, receipts, and financial reporting in one place.</p>
+                    </a>
+                </div>
+                <div class="feature-card">
+                    <a href="{% url 'placement' %}" style="text-decoration: none;">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Placements</h3>
+                        <p>Get powerful insights with our comprehensive analytics and reporting tools.</p>
+                    </a>
+                </div>
+                <div class="feature-card">
+
+                    <div class="feature-card">
+                        <a href="{% url 'events' %}" style="text-decoration: none;">
+                            <div class="feature-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3>Cultural Events</h3>
+                            <p>Get powerful insights with our comprehensive analytics and reporting tools.</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Clients Say</h2>
+                <p>Hear from educational institutions that have transformed their operations with EduManage</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"EduManage has revolutionized how we manage our college. The student portal alone has saved us
+                        hundreds of hours in administrative work."</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Client" class="client-img">
+                        <div>
+                            <div class="client-name">Dr. Sarah Johnson</div>
+                            <div class="client-role">Principal, City College</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"The analytics dashboard provides insights we never had before. We've improved student retention
+                        by 15% since implementation."</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="client-img">
+                        <div>
+                            <div class="client-name">Prof. Michael Chen</div>
+                            <div class="client-role">Dean, University of Technology</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Our faculty love the intuitive interface. Training was minimal and adoption was nearly 100% from
+                        day one."</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client" class="client-img">
+                        <div>
+                            <div class="client-name">Dr. Angela Martinez</div>
+                            <div class="client-role">Director, State University</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        {% include 'layout/recruiters.html' %}
+    </section>
+
+    <!-- CTA Section -->
+    <!-- <section class="cta">
+        <div class="container">
+            <h2>Ready to Transform Your Institution?</h2>
+            <p>Join hundreds of educational institutions that trust EduManage for their college management needs.</p>
+            <a href="#" class="btn">Request a Demo</a>
+        </div>
+    </section> -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>EduManage</h3>
+                    <p>Empowering educational institutions with innovative management solutions since 2015.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Features</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Student Management</a></li>
+                        <li><a href="#">Faculty Portal</a></li>
+                        <li><a href="#">Attendance Tracking</a></li>
+                        <li><a href="#">Fee Management</a></li>
+                        <li><a href="#">Analytics Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Education St, Tech City</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@edumanage.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 EduManage. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Structure - [College Name]</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        
+
+        .container {
+            width: 85%;
+            padding-top: 0vh;
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #1a5276;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            padding-top: 6rem;
+        }
+
+        h2 {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        h3 {
+            margin-top: 25px;
+            color: #2874a6;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e3f2fd;
+        }
+
+        /* Notes Section */
+        .notes {
+            background-color: #eaf2f8;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 25px 0;
+        }
+
+        .notes ul {
+            padding-left: 20px;
+        }
+
+        .notes li {
+            margin-bottom: 8px;
+        }
+
+        /* Payment Modes */
+        .payment-modes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .payment-mode {
+            background-color: #e8f8f5;
+            border: 1px solid #76d7c4;
+            border-radius: 5px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .payment-mode::before {
+            content: "✓";
+            color: #27ae60;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        /* Last Updated */
+        .last-updated {
+            text-align: right;
+            font-style: italic;
+            color: #7f8c8d;
+            margin-top: 30px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .payment-modes {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        {% include 'layout/base.html' %}
+    </header>
+    <div class="container">
+        <h1>Fee Structure - [SMS Lucknow] (Academic Year 2024-25)</h1>
+        
+        <p>At [School Of Management Sciences], we strive to provide transparent and affordable fee structures for all our programs. Below is the detailed breakdown of fees for various courses.</p>
+        
+        <h2>Undergraduate Programs</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Program Name</th>
+                    <th>Tuition Fee (Per Year)</th>
+                    <th>Registration Fee</th>
+                    <th>Exam Fee</th>
+                    <th>Library Fee</th>
+                    <th>Total Annual Fee</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>B.Tech (CSE)</td>
+                    <td>₹85,000</td>
+                    <td>₹2,000</td>
+                    <td>₹3,000</td>
+                    <td>₹1,500</td>
+                    <td>₹91,500</td>
+                </tr>
+                <tr>
+                    <td>BBA</td>
+                    <td>₹45,000</td>
+                    <td>₹1,500</td>
+                    <td>₹2,000</td>
+                    <td>₹1,000</td>
+                    <td>₹49,500</td>
+                </tr>
+                <tr>
+                    <td>B.Sc (Physics)</td>
+                    <td>₹35,000</td>
+                    <td>₹1,000</td>
+                    <td>₹1,500</td>
+                    <td>₹1,000</td>
+                    <td>₹38,500</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+        
+        <h2>Postgraduate Programs</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Program Name</th>
+                    <th>Tuition Fee (Per Year)</th>
+                    <th>Registration Fee</th>
+                    <th>Exam Fee</th>
+                    <th>Lab Fee</th>
+                    <th>Total Annual Fee</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>MBA</td>
+                    <td>₹1,20,000</td>
+                    <td>₹3,000</td>
+                    <td>₹4,000</td>
+                    <td>₹2,500</td>
+                    <td>₹1,29,500</td>
+                </tr>
+                <tr>
+                    <td>M.Tech (AI)</td>
+                    <td>₹90,000</td>
+                    <td>₹2,500</td>
+                    <td>₹3,500</td>
+                    <td>₹3,000</td>
+                    <td>₹99,000</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+        
+        <h2>Diploma & Certificate Courses</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Duration</th>
+                    <th>Total Fee</th>
+                    <th>Exam Fee</th>
+                    <th>Miscellaneous Charges</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Diploma in Mechanical Engg.</td>
+                    <td>2 Years</td>
+                    <td>₹60,000</td>
+                    <td>₹2,000</td>
+                    <td>₹1,500</td>
+                </tr>
+                <tr>
+                    <td>Certificate in Digital Marketing</td>
+                    <td>6 Months</td>
+                    <td>₹15,000</td>
+                    <td>₹1,000</td>
+                    <td>₹500</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+        
+        <h2>Additional Fees & Charges</h2>
+        
+        <ul>
+            <li><strong>Hostel Fee:</strong> ₹50,000 per year (including mess charges)</li>
+            <li><strong>Transportation Fee:</strong> ₹2,500 per month (optional)</li>
+            <li><strong>Caution Deposit (Refundable):</strong> ₹5,000 (one-time)</li>
+            <li><strong>Late Fee Penalty:</strong> ₹200 per day (after due date)</li>
+        </ul>
+        
+        <h2>Payment Modes</h2>
+        
+        <div class="payment-modes">
+            <div class="payment-mode">Online Transfer (Net Banking/UPI)</div>
+            <div class="payment-mode">Debit/Credit Card</div>
+            <div class="payment-mode">Demand Draft (DD) in favor of [College Name]</div>
+            <div class="payment-mode">Cash (at the college finance office)</div>
+        </div>
+        
+        <div class="notes">
+            <h3>Important Notes</h3>
+            <ul>
+                <li>Fees are subject to revision as per university/college guidelines.</li>
+                <li>Scholarships and financial aid options are available for eligible students.</li>
+                <li>Installment payment options can be discussed with the finance department.</li>
+                <li>For any fee-related queries, contact: <strong>finance@collegename.edu</strong> | Phone: +91-XXXXXXXXXX</li>
+            </ul>
+        </div>
+        
+        <div class="last-updated">
+            <p>Last Updated: 01/06/2024</p>
+        </div>
+    </div>
+</body>
+</html>

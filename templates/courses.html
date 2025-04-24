@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses Offered | College Name</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            text-align: center;
+            margin-top: 2rem;
+            font-size: large;
+            font-weight: bolder;
+            margin-bottom: 2vh;
+        }
+        
+        .courses-intro {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: white;
+            margin: 1rem auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            max-width: 800px;
+        }
+        
+        .courses-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+        
+        .course-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .course-header {
+            background: var(--secondary);
+            color: white;
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .course-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .course-duration {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .course-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            opacity: 0.2;
+        }
+        
+        .course-body {
+            padding: 1.5rem;
+        }
+        
+        .course-details {
+            margin-bottom: 1.5rem;
+        }
+        
+        .detail-item {
+            display: flex;
+            margin-bottom: 0.8rem;
+        }
+        
+        .detail-icon {
+            color: var(--secondary);
+            margin-right: 1rem;
+            min-width: 20px;
+        }
+        
+        .course-description {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .department-section {
+            margin: 3rem 0;
+        }
+        
+        .department-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .department-title h2 {
+            display: inline-block;
+            background: white;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+            color: var(--primary);
+        }
+        
+        .department-title::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #ddd;
+            z-index: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .courses-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .btn-container {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        {% include 'layout/base.html' %}
+        
+    </header>
+    
+    <main class="container">
+        <div class="container">
+            <h1>Courses Offered</h1>
+            <p class="subtitle">Explore our wide range of academic programs</p>
+        </div>
+        <section class="courses-intro">
+            <h2>Quality Education for Your Future</h2>
+            <p>Our college offers a diverse range of undergraduate, postgraduate and diploma programs across various disciplines. Each course is designed to provide students with both theoretical knowledge and practical skills needed for successful careers.</p>
+        </section>
+        
+        <section class="department-section">
+            <div class="department-title">
+                <h2>Engineering & Technology</h2>
+            </div>
+            
+            <div class="courses-container">
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>B.Tech in Computer Science</h3>
+                        <span class="course-duration">4 Years</span>
+                        <i class="fas fa-laptop-code course-icon"></i>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-details">
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-graduation-cap"></i></span>
+                                <span>Degree: Bachelor of Technology</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-calendar-alt"></i></span>
+                                <span>Intake: 120 seats</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-rupee-sign"></i></span>
+                                <span>Fee: ₹85,000 per year</span>
+                            </div>
+                        </div>
+                        <p class="course-description">
+                            This program provides comprehensive knowledge of computer systems, software development, algorithms, and emerging technologies like AI and Machine Learning.
+                        </p>
+                        <div class="btn-container">
+                            <a href="#" class="btn">Apply Now</a>
+                            <a href="#" class="btn btn-outline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>B.Tech in Mechanical Engineering</h3>
+                        <span class="course-duration">4 Years</span>
+                        <i class="fas fa-cogs course-icon"></i>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-details">
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-graduation-cap"></i></span>
+                                <span>Degree: Bachelor of Technology</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-calendar-alt"></i></span>
+                                <span>Intake: 60 seats</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-rupee-sign"></i></span>
+                                <span>Fee: ₹75,000 per year</span>
+                            </div>
+                        </div>
+                        <p class="course-description">
+                            Focuses on design, analysis, manufacturing and maintenance of mechanical systems with hands-on training in modern workshops and labs.
+                        </p>
+                        <div class="btn-container">
+                            <a href="#" class="btn">Apply Now</a>
+                            <a href="#" class="btn btn-outline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>M.Tech in Artificial Intelligence</h3>
+                        <span class="course-duration">2 Years</span>
+                        <i class="fas fa-robot course-icon"></i>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-details">
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-graduation-cap"></i></span>
+                                <span>Degree: Master of Technology</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-calendar-alt"></i></span>
+                                <span>Intake: 30 seats</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-rupee-sign"></i></span>
+                                <span>Fee: ₹1,20,000 per year</span>
+                            </div>
+                        </div>
+                        <p class="course-description">
+                            Advanced program covering machine learning, deep learning, neural networks, and AI applications with industry collaborations.
+                        </p>
+                        <div class="btn-container">
+                            <a href="#" class="btn">Apply Now</a>
+                            <a href="#" class="btn btn-outline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="department-section">
+            <div class="department-title">
+                <h2>Business & Management</h2>
+            </div>
+            
+            <div class="courses-container">
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>Bachelor of Business Administration (BBA)</h3>
+                        <span class="course-duration">3 Years</span>
+                        <i class="fas fa-chart-line course-icon"></i>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-details">
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-graduation-cap"></i></span>
+                                <span>Degree: BBA</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-calendar-alt"></i></span>
+                                <span>Intake: 60 seats</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-rupee-sign"></i></span>
+                                <span>Fee: ₹60,000 per year</span>
+                            </div>
+                        </div>
+                        <p class="course-description">
+                            Provides fundamental knowledge of business operations, management principles, marketing, finance, and entrepreneurship.
+                        </p>
+                        <div class="btn-container">
+                            <a href="#" class="btn">Apply Now</a>
+                            <a href="#" class="btn btn-outline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>Master of Business Administration (MBA)</h3>
+                        <span class="course-duration">2 Years</span>
+                        <i class="fas fa-briefcase course-icon"></i>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-details">
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-graduation-cap"></i></span>
+                                <span>Degree: MBA</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-calendar-alt"></i></span>
+                                <span>Intake: 120 seats</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-rupee-sign"></i></span>
+                                <span>Fee: ₹1,50,000 per year</span>
+                            </div>
+                        </div>
+                        <p class="course-description">
+                            Specializations available in Marketing, Finance, HR, and Operations. Industry-oriented curriculum with case study approach.
+                        </p>
+                        <div class="btn-container">
+                            <a href="#" class="btn">Apply Now</a>
+                            <a href="#" class="btn btn-outline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="department-section">
+            <div class="department-title">
+                <h2>Science & Arts</h2>
+            </div>
+            
+            <div class="courses-container">
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>B.Sc in Data Science</h3>
+                        <span class="course-duration">3 Years</span>
+                        <i class="fas fa-database course-icon"></i>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-details">
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-graduation-cap"></i></span>
+                                <span>Degree: Bachelor of Science</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-calendar-alt"></i></span>
+                                <span>Intake: 40 seats</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-rupee-sign"></i></span>
+                                <span>Fee: ₹70,000 per year</span>
+                            </div>
+                        </div>
+                        <p class="course-description">
+                            Combines statistics, computer science and domain knowledge to extract insights from data. Includes Python, R, ML and visualization tools.
+                        </p>
+                        <div class="btn-container">
+                            <a href="#" class="btn">Apply Now</a>
+                            <a href="#" class="btn btn-outline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-header">
+                        <h3>Bachelor of Arts (BA) in Psychology</h3>
+                        <span class="course-duration">3 Years</span>
+                        <i class="fas fa-brain course-icon"></i>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-details">
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-graduation-cap"></i></span>
+                                <span>Degree: Bachelor of Arts</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-calendar-alt"></i></span>
+                                <span>Intake: 60 seats</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-icon"><i class="fas fa-rupee-sign"></i></span>
+                                <span>Fee: ₹45,000 per year</span>
+                            </div>
+                        </div>
+                        <p class="course-description">
+                            Study of human behavior and mental processes with practical applications in counseling, organizational behavior and research.
+                        </p>
+                        <div class="btn-container">
+                            <a href="#" class="btn">Apply Now</a>
+                            <a href="#" class="btn btn-outline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 College Name. All Rights Reserved.</p>
+            <p>For more information about our courses, contact: admissions@collegename.edu</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    background: #f5f5f5;
+}
+
+/* Sidebar Styles */
+
+/* Main Content Styles */
+.main-content {
+    margin-left: 100px;
+    width: calc(100% - 250px);
+    padding: 20px;
+
+}
+.dashboard{
+    margin-left: 100px;
+}
+ 
+
+
+/* Dashboard Cards */
+.dashboard h1 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    color: white;
+    font-size: 20px;
+}
+
+.card-icon.blue {
+    background: #3498db;
+}
+
+.card-icon.green {
+    background: #2ecc71;
+}
+
+.card-icon.orange {
+    background: #e67e22;
+}
+
+.card-icon.red {
+    background: #e74c3c;
+}
+
+.card-info h3 {
+    font-size: 16px;
+    color: #7f8c8d;
+    margin-bottom: 5px;
+}
+
+.card-info p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Student List Section */
+.student{
+    margin-left: 100px;
+}
+.student-list {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-add {
+    display: block;
+            background: var(--secondary);
+            color: white;
+            padding: 1rem 2rem 1rem 2rem; /* Reduced padding */
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+}
+.btn-add:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+
+
+.filters {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.filters select, .filters input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background: #f8f9fa;
+    color: #2c3e50;
+}
+
+table td {
+    vertical-align: middle;
+}
+
+table td img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status.active {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status.inactive {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.btn-edit, .btn-delete {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.btn-edit {
+    background: #3498db;
+    color: white;
+}
+
+.btn-delete {
+    background: #e74c3c;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+ 
+    .main-content {
+        margin-left: 70px;
+        width: calc(100% - 70px);
+    }
+}
+
+.search-filter {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .search-filter input, .search-filter select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+       
+    </style>
+
+</head>
+<body>
+    <!-- <header>
+        {% include 'layout/base.html' %}
+    </header> -->
+
+    <div class="dashboard-container">
+    <!-- Sidebar Navigation -->
+    {% include 'layout/sidebase.html' %}
+
+    <!-- Main Content -->
+    <div class="main-content">
+            <section class="dashboard">
+            <h1>Dashboard Overview</h1>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-icon blue">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>Total Students</h3>
+                        <p>1,250</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon green">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>Today's Attendance</h3>
+                        <p>92%</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon orange">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>Pending Fees</h3>
+                        <p>$12,540</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon red">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3>Pending Requests</h3>
+                        <p>15</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Student List Section -->
+      <section class="student">
+        <div class="container">
+            <h1>Student Records</h1>
+            
+           
+            
+            <!-- Search & Filters -->
+            <form method="get" action="{% url 'student' %}" class="search-filter">
+                <input type="text" id="searchInput" name="search" placeholder="Search by name, roll no or course..." value="{{ search_query }}" class="form-control" style="border-radius: 20px;">
+                <button type="submit" class="btn-add  btn-success" style="border-radius: 40px;">Search</button>
+                <a href="{% url 'add_student' %}" class="btn-add btn-success" style="text-decoration: none; border-radius: 40px;">Add Student</a>
+            </form>
+            
+            
+            <!-- Student Table -->
+            <table id="studentTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Course</th>
+                        <th>Contact</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    {% for record in students %}
+                        
+                    
+                    <tr>
+                        <td>{{record.stu_id}}</td>
+                        <td>{{record.name}}</td>
+                        <td>{{record.course}}</td>
+                        <td>{{record.contact}}</td>
+                        <td>
+                            <a href="{% url 'edit_student' record.stu_id %}" class="btn-edit" style="text-decoration: none;">Edit</a>
+                            <a href="{% url 'delete_student' record.stu_id %}" class="btn-delete" style="text-decoration: none;" onclick="return confirm('Are you sure you want to delete this student?')">Delete</a>
+                        </td>
+                        
+                    </tr>
+                    {% endfor %}
+                   
+                </tbody>
+            </table>
+        </div>
+      </section>
+      </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - College Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://assets.collegedunia.com/public/college_data/images/appImage/14838_SIT_APP.jpg');
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 100px 0;
+    padding-top: 30vh;
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin: 0;
+}
+
+.hero p {
+    font-size: 1.5em;
+}
+
+/* About College Section */
+.about-college {
+    padding: 50px 0;
+    background: #f9f9f9;
+}
+
+.vision-mission {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.vision, .mission {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.vision h3, .mission h3 {
+    color: #003366;
+}
+
+/* Infrastructure Section */
+.infrastructure {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.gallery-item {
+    flex: 1 1 300px;
+    max-width: 400px;
+}
+
+.gallery-item img {
+    width: 100%;
+    border-radius: 5px;
+    transition: transform 0.3s;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+}
+
+/* Faculty Section */
+.faculty {
+    padding: 50px 0;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+.faculty-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.faculty-card {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1 1 250px;
+    max-width: 300px;
+}
+
+.faculty-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+/* Why Choose Us Section */
+.why-choose-us {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.feature-item {
+    flex: 1 1 200px;
+    max-width: 250px;
+    padding: 20px;
+    background: #003366;
+    color: white;
+    border-radius: 5px;
+}
+
+.feature-item i {
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+/* Footer Styles */
+footer {
+    background: #003366;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    color: white;
+    margin: 0 10px;
+    font-size: 1.5em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .vision-mission, .faculty-container, .features {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gallery-item, .faculty-card, .feature-item {
+        max-width: 100%;
+    }
+}
+    </style>
+</head>
+<body>
+   {% include 'layout/base.html' %}
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Scool Of Management Sciences</h1>
+            <p>Excellence in Education Since 1990</p>
+        </section>
+
+        <!-- About College Section -->
+        <section class="about-college">
+            <div class="container">
+                <h2>Welcome to School Of Management Sciences</h2>
+                <p>Established in <strong>1990</strong>, [College Name] has been a pioneer in providing quality education, fostering innovation, and shaping future leaders. Our mission is to create an environment where students can achieve academic excellence while developing essential life skills.</p>
+                
+                <div class="vision-mission">
+                    <div class="vision">
+                        <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                        <p>To become a constantly growing centre of excellence nurturing global-centric professional leadership based on ethical and moral attributes.</p>
+                    </div>
+                    <div class="mission">
+                        <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                       <p>To create excellent learning ambience through innovation in teaching, research and consultancy for producing professionals capable of facing global challenges and demonstrating high ethical and moral standards.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Infrastructure Section -->
+        <section class="infrastructure">
+            <h2>Our Infrastructure</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://d3ahzzdje1trpm.cloudfront.net/uploads/topics/16527009956009.webp" alt="Classrooms">
+                    <p><strong>Modern Classrooms</strong> with smart boards</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_r9qbZzBamEzNZFnA0YNJvPn_Fk77W3YQXA&s" alt="Library">
+                    <p><strong>Well-stocked Library</strong> with digital resources</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://d3ahzzdje1trpm.cloudfront.net/uploads/topics/16553552902443.webp" alt="Laboratory">
+                    <p><strong>Advanced Laboratories</strong> for practical learning</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://d3ahzzdje1trpm.cloudfront.net/uploads/sections/16589407567759.webp" alt="Sports Complex">
+                    <p><strong>Sports Facilities</strong> for fitness and recreation</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Faculty Section -->
+        <section class="faculty">
+            <h2>Our Team</h2>
+            <div class="faculty-container">
+                <div class="faculty-card">
+                    <img src="https://via.placeholder.com/200x200?text=Principal" alt="Principal">
+                    <h3>Dr. John Smith</h3>
+                    <p>Principal</p>
+                    <p>PhD in Education, 20+ years of experience</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://via.placeholder.com/200x200?text=Professor" alt="Professor">
+                    <h3>Prof. Jane Doe</h3>
+                    <p>Head of Computer Science</p>
+                    <p>M.Tech, Research Expert</p>
+                </div>
+                <div class="faculty-card">
+                    <img src="https://via.placeholder.com/200x200?text=Lab+Incharge" alt="Lab Incharge">
+                    <h3>Mr. Robert Brown</h3>
+                    <p>Lab Incharge</p>
+                    <p>B.Tech, 10+ years of experience</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="why-choose-us">
+            <h2>Why Choose Us?</h2>
+            <div class="features">
+                <div class="feature-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Quality Education</h3>
+                    <p>Industry-relevant curriculum taught by experts.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Placement Support</h3>
+                    <p>Strong industry connections for internships & jobs.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-users"></i>
+                    <h3>Student Development</h3>
+                    <p>Clubs, events, and leadership programs.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Safe Campus</h3>
+                    <p>Secure and inclusive environment.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 College Road, City, State</p>
+                <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                <p><i class="fas fa-envelope"></i> info@college.edu</p>
+            </div>
+            <div class="social-links">
+                <h3>Follow Us</h3>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <p>&copy; 2024 [College Name]. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

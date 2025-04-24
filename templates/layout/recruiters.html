@@ -1,0 +1,204 @@
+
+    <style>
+        /* Recruiters Section Styles */
+        .recruiters-section {
+            padding: 40px 0;
+            background: #f8f9fa;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+        }
+        
+        .recruiters-slider {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .recruiters-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .recruiter-item {
+            min-width: 20%;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+        
+        .recruiter-logo {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        
+        .recruiter-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            filter: grayscale(0);
+            transition: filter 0.5s ease;
+        }
+        
+        .recruiter-logo:hover img {
+            filter: grayscale(0%);
+        }
+        
+        .recruiter-name {
+            margin-top: 15px;
+            font-weight: 600;
+            color: #34495e;
+        }
+        
+        .partner-tag {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .recruiter-item {
+                min-width: 33.33%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .recruiter-item {
+                min-width: 50%;
+            }
+        }
+    </style>
+</head>
+
+    <!-- Top Recruiters Section -->
+    <section class="recruiters-section">
+        <h2 class="section-title">Top Recruiters</h2>
+        <p class="subtitle">WORKING PARTNERS</p>
+        
+        <div class="recruiters-slider">
+            <div class="recruiters-track">
+                <!-- Recruiter Item 1 -->
+                <div class="recruiter-item">
+                    <div class="recruiter-logo">
+                        <img src="https://logowik.com/content/uploads/images/sbi-life-insurance-company-limited9752.logowik.com.webp" alt="SBI Life">
+                    </div>
+                    <div class="recruiter-name">SBI Life</div>
+                    <span class="partner-tag">PARTNER OF THE PERSONALITY</span>
+                </div>
+                
+                <!-- Recruiter Item 2 -->
+                <div class="recruiter-item">
+                    <div class="recruiter-logo">
+                        <img src="https://1000logos.net/wp-content/uploads/2018/03/SBI-Logo.jpg" alt="SBI">
+                    </div>
+                    <div class="recruiter-name">SBI</div>
+                </div>
+                
+                <!-- Recruiter Item 3 -->
+                <div class="recruiter-item">
+                    <div class="recruiter-logo">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTPAWYqoR1E-YMPwd869I0X2WuToOjTrPXgQ&s" alt="TCS">
+                    </div>
+                    <div class="recruiter-name">TCS</div>
+                </div>
+                
+                <!-- Recruiter Item 4 -->
+                <div class="recruiter-item">
+                    <div class="recruiter-logo">
+                        <img src="https://download.logo.wine/logo/Intel/Intel-Logo.wine.png" alt="Intel">
+                    </div>
+                    <div class="recruiter-name">Intel</div>
+                </div>
+                
+                <!-- Recruiter Item 5 -->
+                <div class="recruiter-item">
+                    <div class="recruiter-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png" alt="Amazon">
+                    </div>
+                    <div class="recruiter-name">Amazon</div>
+                </div>
+                
+                <!-- Recruiter Item 6 -->
+                <div class="recruiter-item">
+                    <div class="recruiter-logo">
+                        <img src="https://cdn.pixabay.com/photo/2012/04/10/23/33/logo-27046_1280.png" alt="Microsoft">
+                    </div>
+                    <div class="recruiter-name">Microsoft</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Auto-sliding functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.querySelector('.recruiters-track');
+            const items = document.querySelectorAll('.recruiter-item');
+            const itemWidth = items[0].offsetWidth;
+            let currentPosition = 0;
+            const totalItems = items.length;
+            const visibleItems = window.innerWidth < 768 ? (window.innerWidth < 480 ? 2 : 3) : 5;
+            
+            // Clone first few items and append to end for infinite effect
+            for (let i = 0; i < visibleItems; i++) {
+                const clone = items[i].cloneNode(true);
+                track.appendChild(clone);
+            }
+            
+            function slide() {
+                currentPosition -= itemWidth;
+                track.style.transform = `translateX(${currentPosition}px)`;
+                
+                // When we've scrolled all original items, reset to start
+                if (currentPosition <= -itemWidth * totalItems) {
+                    setTimeout(() => {
+                        currentPosition = 0;
+                        track.style.transition = 'none';
+                        track.style.transform = `translateX(0)`;
+                        setTimeout(() => {
+                            track.style.transition = 'transform 0.5s ease';
+                        }, 50);
+                    }, 500);
+                }
+            }
+            
+            // Start auto-sliding
+            const slideInterval = setInterval(slide, 2000);
+            
+            // Pause on hover
+            track.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+            
+            track.addEventListener('mouseleave', () => {
+                slideInterval = setInterval(slide, 2000);
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                const newVisibleItems = window.innerWidth < 768 ? (window.innerWidth < 480 ? 2 : 3) : 5;
+                if (newVisibleItems !== visibleItems) {
+                    // Adjust for responsive changes if needed
+                }
+            });
+        });
+    </script>
+

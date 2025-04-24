@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Fee Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .dashboard-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .total-fees {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+        }
+        
+        .paid-fees {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+        }
+        
+        .pending-fees {
+            background: linear-gradient(135deg, #f39c12, #d35400);
+            color: white;
+        }
+        
+        .overdue-fees {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+        }
+        
+        .filter-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .student-table {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .badge-paid {
+            background-color: var(--success-color);
+        }
+        
+        .badge-pending {
+            background-color: var(--warning-color);
+        }
+        
+        .badge-overdue {
+            background-color: var(--danger-color);
+        }
+        
+        .status-indicator {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        
+        .paid {
+            background-color: var(--success-color);
+        }
+        
+        .pending {
+            background-color: var(--warning-color);
+        }
+        
+        .overdue {
+            background-color: var(--danger-color);
+        }
+    </style>
+</head>
+<body>
+    <header>{% include 'layout/base.html' %}</header>
+    <div class="container-fluid mt-5">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header mb-2 mt-5 ">
+            <div class="row align-items-center mt-5">
+                <div class="col-md-6">
+                    <h1><i class="bi bi-cash-stack"></i> Fee Management System</h1>
+                    <p class="mb-0">Manage student fees and payments efficiently</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i> Admin User
+                        </bu tton>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Summary Cards -->
+        <div class="row mb-4">
+            <div class="col-xl-3 col-md-6">
+                <div class="card total-fees text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="card-title">Total Fees</h5>
+                                <h2 class="mb-0">₹12,45,800</h2>
+                                <p class="mb-0">All students</p>
+                            </div>
+                            <div class="card-icon">
+                                <i class="bi bi-wallet2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card paid-fees text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="card-title">Paid Fees</h5>
+                                <h2 class="mb-0">₹8,76,500</h2>
+                                <p class="mb-0">70% collected</p>
+                            </div>
+                            <div class="card-icon">
+                                <i class="bi bi-check-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card pending-fees text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="card-title">Pending Fees</h5>
+                                <h2 class="mb-0">₹3,69,300</h2>
+                                <p class="mb-0">128 students</p>
+                            </div>
+                            <div class="card-icon">
+                                <i class="bi bi-hourglass-split"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card overdue-fees text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="card-title">Overdue Fees</h5>
+                                <h2 class="mb-0">₹1,24,500</h2>
+                                <p class="mb-0">42 students</p>
+                            </div>
+                            <div class="card-icon">
+                                <i class="bi bi-exclamation-triangle"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <h4><i class="bi bi-funnel"></i> Filter Students</h4>
+            <form id="feeFilterForm" method="get" action="{% url 'fee' %}">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label for="courseSelect" class="form-label">Course</label>
+                        <select class="form-select" id="courseSelect" name="course">
+                            <option value="" {% if not request.GET.course %}selected{% endif %}>All Courses</option>
+                            <option value="btech" {% if request.GET.course == 'btech' %}selected{% endif %}>B.Tech</option>
+                            <option value="mtech" {% if request.GET.course == 'mtech' %}selected{% endif %}>M.Tech</option>
+                            <option value="mba" {% if request.GET.course == 'mba' %}selected{% endif %}>MBA</option>
+                            <option value="bca" {% if request.GET.course == 'bca' %}selected{% endif %}>BCA</option>
+                            <option value="mca" {% if request.GET.course == 'mca' %}selected{% endif %}>MCA</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="branchSelect" class="form-label">Branch (Optional)</label>
+                        <select class="form-select" id="branchSelect" name="branch">
+                            <option value="" {% if not request.GET.branch %}selected{% endif %}>All Branches</option>
+                            <option value="cse" {% if request.GET.branch == 'cse' %}selected{% endif %}>Computer Science</option>
+                            <option value="it" {% if request.GET.branch == 'it' %}selected{% endif %}>Information Technology</option>
+                            <option value="mech" {% if request.GET.branch == 'mech' %}selected{% endif %}>Mechanical</option>
+                            <option value="ece" {% if request.GET.branch == 'ece' %}selected{% endif %}>Electronics</option>
+                            <option value="eee" {% if request.GET.branch == 'eee' %}selected{% endif %}>Electrical</option>
+                            <option value="civil" {% if request.GET.branch == 'civil' %}selected{% endif %}>Civil</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="yearSelect" class="form-label">Year</label>
+                        <select class="form-select" id="yearSelect" name="year">
+                            <option value="" {% if not request.GET.year %}selected{% endif %}>All Years</option>
+                            <option value="1" {% if request.GET.year == '1' %}selected{% endif %}>First Year</option>
+                            <option value="2" {% if request.GET.year == '2' %}selected{% endif %}>Second Year</option>
+                            <option value="3" {% if request.GET.year == '3' %}selected{% endif %}>Third Year</option>
+                            <option value="4" {% if request.GET.year == '4' %}selected{% endif %}>Fourth Year</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="statusSelect" class="form-label">Fee Status</label>
+                        <select class="form-select" id="statusSelect" name="status">
+                            <option value="" {% if not request.GET.status %}selected{% endif %}>All Statuses</option>
+                            <option value="paid" {% if request.GET.status == 'paid' %}selected{% endif %}>Paid</option>
+                            <option value="pending" {% if request.GET.status == 'pending' %}selected{% endif %}>Pending</option>
+                            <option value="overdue" {% if request.GET.status == 'overdue' %}selected{% endif %}>Overdue</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 text-end">
+                        <button type="button" class="btn btn-primary me-2" id="applyFilters">
+                            <i class="bi bi-funnel"></i> Apply Filters
+                        </button>
+                        <button type="reset" class="btn btn-outline-secondary" id="resetFilters">
+                            <i class="bi bi-arrow-counterclockwise"></i> Reset
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Students Table -->
+        <div class="student-table p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4><i class="bi bi-people-fill"></i> Student Fee Records</h4>
+                
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                            <th>Course</th>
+                            <th>Branch</th>
+                            <th>Year</th>
+                            <th>Total Fees</th>
+                            <th>Paid</th>
+                            <th>Balance</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in fees %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ student.stu_id }}</td>
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.course }}</td>
+                            <td>{{ student.address }}</td>
+                            
+                            <!-- Replace static values below with actual model fields if available -->
+                            <td>3</td> <!-- Static semester/year placeholder -->
+                            <td>₹85,000</td> <!-- Static total fee placeholder -->
+                            <td>₹85,000</td> <!-- Static paid amount placeholder -->
+                            <td>₹0</td> <!-- Static due amount placeholder -->
+                            <td>15 Aug 2023</td> <!-- Static payment date placeholder -->
+                            
+                            <td>
+                                <span class="status-indicator paid"></span> 
+                                <span class="badge badge-paid">Paid</span> <!-- You can use conditions for status -->
+                            </td>
+                            <td>
+                                <a href="{% url 'edit_student' student.stu_id %}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    
+                </table>
+            </div>
+            
+            
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        
+        
+        document.getElementById('resetFilters').addEventListener('click', function() {
+            // Reset all filter dropdowns
+            document.getElementById('feeFilterForm').reset();
+            
+            // Here you would typically reload the original unfiltered data
+            console.log('Filters reset');
+            
+            alert('Filters reset! In a real application, this would show all students.');
+        });
+        document.getElementById("applyFilters").addEventListener("click", function () {
+        document.getElementById("feeFilterForm").submit();
+    });
+    </script>
+</body>
+</html>

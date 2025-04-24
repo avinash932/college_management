@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Cell | College Name</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2980b9;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .top{
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 10vh;
+        }
+        
+        .top::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+       
+        .top-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background-color: white;
+            padding: 3rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 1.5rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        /* Placement Process */
+        .process-section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            display: inline-block;
+            background: white;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+            font-size: 2rem;
+            color: var(--dark);
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            z-index: 0;
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .process-step {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .process-step:hover {
+            transform: translateY(-10px);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .step-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .step-description {
+            color: #666;
+        }
+        
+        /* Recruiters Section */
+        .recruiters-section {
+            background-color: #f1f1f1;
+            padding: 4rem 0;
+        }
+        
+        .recruiters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 2rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        .recruiter-logo {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .recruiter-logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .recruiter-logo img {
+            max-width: 100%;
+            max-height: 60px;
+            filter: grayscale(0%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .recruiter-logo:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        /* Testimonials */
+        .testimonials-section {
+            padding: 4rem 0;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 4rem;
+            color: rgba(52, 152, 219, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 1.5rem;
+            color: #555;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Placement Team */
+        .team-section {
+            padding: 4rem 0;
+            background-color: #f1f1f1;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        
+        .member-photo {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .team-member:hover .member-photo img {
+            transform: scale(1.1);
+        }
+        
+        .member-info {
+            padding: 1.5rem;
+        }
+        
+        .member-name {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: var(--dark);
+        }
+        
+        .member-position {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .member-contact {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-btn:hover {
+            background: var(--dark);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .cta-btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .cta-btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .contact-info {
+            color: #bbb;
+        }
+        
+        .contact-info p {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-info i {
+            margin-right: 0.8rem;
+            color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .process-step {
+                max-width: 100%;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-btn {
+                width: 80%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        {% include 'layout/base.html' %}
+    </header>
+      
+    <section class="top">
+        <div class="top-content">
+            <div class="container">
+                <h1>Training & Placement Cell</h1>
+                <p class="subtitle">Bridging the gap between academia and industry through quality placements and career development</p>
+            </div>
+        </div>
+    </section>
+    <section class="stats-section">
+        <div class="container">
+            
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Placement Rate (2023)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">120+</div>
+                    <div class="stat-label">Recruiting Companies</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">₹18L</div>
+                    <div class="stat-label">Highest Package (2023)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">₹7.5L</div>
+                    <div class="stat-label">Average Package (2023)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="process-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Placement Process</h2>
+            </div>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Registration</h3>
+                    <p class="step-description">Students register with the placement cell and submit their resumes</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Training</h3>
+                    <p class="step-description">Soft skills, technical training and mock interviews conducted</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Company Presentations</h3>
+                    <p class="step-description">Companies present their profiles and job requirements</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Selection Process</h3>
+                    <p class="step-description">Written tests, group discussions and interviews conducted</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h3 class="step-title">Final Placement</h3>
+                    <p class="step-description">Selected candidates receive offer letters</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="recruiters-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Top Recruiters</h2>
+            </div>
+            
+            <div class="recruiters-grid">
+                <div class="recruiter-logo">
+                    <img src="https://logo.clearbit.com/tcs.com" alt="TCS">
+                </div>
+                <div class="recruiter-logo">
+                    <img src="https://logo.clearbit.com/infosys.com" alt="Infosys">
+                </div>
+                <div class="recruiter-logo">
+                    <img src="https://logo.clearbit.com/wipro.com" alt="Wipro">
+                </div>
+                <div class="recruiter-logo">
+                    <img src="https://logo.clearbit.com/amazon.com" alt="Amazon">
+                </div>
+                <div class="recruiter-logo">
+                    <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft">
+                </div>
+                <div class="recruiter-logo">
+                    <img src="https://logo.clearbit.com/google.com" alt="Google">
+                </div>
+                <div class="recruiter-logo">
+                    <img src="https://logo.clearbit.com/accenture.com" alt="Accenture">
+                </div>
+                <div class="recruiter-logo">
+                    <img src="https://logo.clearbit.com/cognizant.com" alt="Cognizant">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Student Testimonials</h2>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-content">
+                        The placement cell provided excellent training sessions that helped me crack the interview at Amazon. The mock interviews were especially helpful in building my confidence.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Riya Sharma">
+                        </div>
+                        <div class="author-info">
+                            <h4>Riya Sharma</h4>
+                            <p>Placed at Amazon (₹18L PA)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-content">
+                        Regular industry interactions organized by the placement cell gave me great exposure. The resume building workshops helped me present my skills effectively.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Amit Patel">
+                        </div>
+                        <div class="author-info">
+                            <h4>Amit Patel</h4>
+                            <p>Placed at Microsoft (₹15L PA)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-content">
+                        The placement officers were extremely supportive throughout the process. Their guidance helped me choose between multiple offers to find the best fit for my career.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya Reddy">
+                        </div>
+                        <div class="author-info">
+                            <h4>Priya Reddy</h4>
+                            <p>Placed at Google (₹16.5L PA)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="team-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Placement Team</h2>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Dr. Rajesh Kumar">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Dr. Rajesh Kumar</h3>
+                        <p class="member-position">Placement Director</p>
+                        <p class="member-contact">rajesh.kumar@college.edu<br>+91 9876543210</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Ms. Anjali Mehta">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Ms. Anjali Mehta</h3>
+                        <p class="member-position">Training Coordinator</p>
+                        <p class="member-contact">anjali.mehta@college.edu<br>+91 9876543211</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Mr. Vivek Sharma">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Mr. Vivek Sharma</h3>
+                        <p class="member-position">Industry Relations</p>
+                        <p class="member-contact">vivek.sharma@college.edu<br>+91 9876543212</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to recruit our students?</h2>
+                <p>Our graduates are equipped with both technical expertise and soft skills to excel in your organization.</p>
+                
+                <div class="cta-buttons">
+                    <a href="#" class="cta-btn">For Companies: Recruitment Query</a>
+                    <a href="#" class="cta-btn cta-btn-outline">For Students: Placement Registration</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Placement Policy</a></li>
+                        <li><a href="#">Placement Brochure</a></li>
+                        <li><a href="#">Past Recruiters</a></li>
+                        <li><a href="#">Placement Statistics</a></li>
+                        <li><a href="#">Internship Opportunities</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Resume Templates</a></li>
+                        <li><a href="#">Interview Tips</a></li>
+                        <li><a href="#">Aptitude Preparation</a></li>
+                        <li><a href="#">Technical Resources</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Training & Placement Cell, College Name, City - 123456</p>
+                        <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                        <p><i class="fas fa-envelope"></i> placement@college.edu</p>
+                        <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 College Name. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
