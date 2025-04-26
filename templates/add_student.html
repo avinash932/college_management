@@ -2,192 +2,120 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Form Popup</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+    <title>Student Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-        /* Popup Background */
-        .popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 1000;
+    <style>
+        body {
+            background: #f4f6f9;
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        /* Popup Content */
-        .popup-content {
-            background: white;
-            width: 90%;
-            max-width: 500px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            overflow: hidden;
-            animation: popupFadeIn 0.3s ease-out;
-        }
-
-        @keyframes popupFadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        /* Popup Header */
-        .popup-header {
-            background: #3f51b5;
-            color: white;
-            padding: 16px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .popup-header h2 {
-            font-size: 20px;
-            font-weight: 500;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 0 8px;
-        }
-
-        /* Popup Body */
-        .popup-body {
+            height: 100vh;
             padding: 20px;
         }
-
-        .form-group {
-            margin-bottom: 16px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 500;
-            color: #555;
-        }
-
-        .form-control {
+        .form-container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
             width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
+            max-width: 700px;
+            animation: fadeIn 0.8s ease;
         }
-
-        .form-control:focus {
-            outline: none;
-            border-color: #3f51b5;
-            box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.2);
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(-10px);}
+            to {opacity: 1; transform: translateY(0);}
         }
-
-        /* Popup Footer */
-        .popup-footer {
-            padding: 16px 20px;
-            background: #f9f9f9;
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+            color: #4a4a4a;
         }
-
-        .btn {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.2s;
-        }
-
         .btn-primary {
-            background: #3f51b5;
-            color: white;
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #6c63ff;
+            border: none;
         }
-
         .btn-primary:hover {
-            background: #354497;
-        }
-
-        .btn-secondary {
-            background: #e0e0e0;
-            color: #333;
-        }
-
-        .btn-secondary:hover {
-            background: #d0d0d0;
+            background-color: #5851db;
         }
     </style>
 </head>
 <body>
-    <!-- Popup Container -->
-    <div class="popup">
-        <div class="popup-content">
-            <div class="popup-header">
-                <!-- Dynamically change the title based on Edit or Add -->
-                <h2>{{ title }}</h2>
+
+<div class="form-container">
+    <h2>Student Details</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+        
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" class="form-control" placeholder="Enter full name" value="{{ student.name|default:'' }}" required name="fullname">
             </div>
-            
-            <div class="popup-body">
-                <form method="post">
-                    {% csrf_token %}
-                    <!-- Form fields with values pre-filled for editing -->
-                    <div class="form-group">
-                        <label for="fullname">Full Name</label>
-                        <input type="text" id="fullname" class="form-control" placeholder="Enter full name" value="{{ student.name|default:'' }}" required name="fullname">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="rollno">Roll Number</label>
-                        <input type="text" id="rollno" class="form-control" placeholder="Enter roll number" value="{{ student.stu_id|default:'' }}" {% if student %}readonly{% endif %} required name="rollno">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" class="form-control" placeholder="Enter email address" value="{{ student.email|default:'' }}" required name="email">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="course">Course</label>
-                        <select id="course" class="form-control" required name="course">
-                            <option value="">Select course</option>
-                            <option value="B.Tech" {% if student.course == 'B.Tech' %}selected{% endif %}>B.Tech</option>
-                            <option value="B.Sc" {% if student.course == 'B.Sc' %}selected{% endif %}>B.Sc</option>
-                            <option value="BA" {% if student.course == 'BA' %}selected{% endif %}>BA</option>
-                            <option value="MBA" {% if student.course == 'MBA' %}selected{% endif %}>MBA</option>
-                            <option value="MCA" {% if student.course == 'MCA' %}selected{% endif %}>MCA</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" class="form-control" placeholder="Enter phone number" value="{{ student.contact|default:'' }}" name="phone" required>
-                    </div>
-                
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" id="address" class="form-control" placeholder="Enter address" value="{{ student.address|default:'' }}" name="address" required>
-                    </div>
-                
-                    <!-- Submit button text changes based on Add or Edit -->
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </form>
+            <div class="form-group col-md-6">
+                <label for="rollno">Roll Number</label>
+                <input type="text" id="rollno" class="form-control" placeholder="Enter roll number" value="{{ student.stu_id|default:'' }}" {% if student %}readonly{% endif %} required name="rollno">
             </div>
         </div>
-    </div>
+        
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="course">Course</label>
+                <select id="course" class="form-control" required name="course">
+                    <option value="">Select course</option>
+                    <option value="B.Tech" {% if student.course == 'B.Tech' %}selected{% endif %}>B.Tech</option>
+                    <option value="B.Sc" {% if student.course == 'B.Sc' %}selected{% endif %}>B.Sc</option>
+                    <option value="BCA" {% if student.course == 'BCA' %}selected{% endif %}>BCA</option>
+                    <option value="MBA" {% if student.course == 'MBA' %}selected{% endif %}>MBA</option>
+                    <option value="BBA" {% if student.course == 'BBA' %}selected{% endif %}>BBA</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="branch">Branch</label>
+                <input type="text" id="branch" class="form-control" placeholder="Enter branch" value="{{ student.branch|default:'' }}" name="branch">
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="year">Year</label>
+                <input type="number" id="year" class="form-control" placeholder="Enter year" value="{{ student.year|default:'1' }}" name="year" min="1" max="5">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fee_paid">Fee Paid</label>
+                <input type="number" id="fee_paid" class="form-control" placeholder="Enter paid fee" value="{{ student.fee_paid|default:'0' }}" required name="fee_paid" min="0" step="1">
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" class="form-control" placeholder="Enter phone number" value="{{ student.contact|default:'' }}" name="phone" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control" placeholder="Enter email address" value="{{ student.email|default:'' }}" name="email" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" class="form-control" placeholder="Enter address" value="{{ student.address|default:'' }}" name="address" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">{{ button_text|default:'Save' }}</button>
+    </form>
+</div>
+
 </body>
 </html>

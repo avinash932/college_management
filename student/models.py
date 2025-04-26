@@ -11,6 +11,8 @@ class students_records(models.Model):
     contact = models.CharField(max_length=15, blank=True)
     email = models.EmailField(max_length=255, blank=True)
     fee_status = models.CharField(max_length=10, default='Paid')  # Paid / Pending / Overdue
+    fee_paid=models.IntegerField(null=False,blank=True,default=0)
+    fee_total=models.IntegerField(default=80000)    
 
 
     def __str__(self):
