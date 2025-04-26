@@ -9,6 +9,6 @@ class faculty(models.Model):
     description=models.CharField(max_length=150,default=None)
     dept=models.CharField(max_length=30,default=None)
     courses=models.IntegerField(max_length=2,default=None)
-    rating=models.IntegerField(max_length=2,default=None)
+    rating=models.IntegerField(default=None)
     paper=models.IntegerField(max_length=3,default=None)
     

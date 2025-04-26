@@ -266,33 +266,17 @@ table td img {
                         <p>{{ total_students|default:"students not found" }}</p>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-icon green">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <div class="card-info">
-                        <h3>Today's Attendance</h3>
-                        <p>92%</p>
-                    </div>
-                </div>
+                
                 <div class="card">
                     <div class="card-icon orange">
                         <i class="fas fa-money-bill-wave"></i>
                     </div>
                     <div class="card-info">
                         <h3>Pending Fees</h3>
-                        <p>{{ total_fees }}</p>
+                        <p>{{ pending_fees }}</p>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-icon red">
-                        <i class="fas fa-exclamation-circle"></i>
-                    </div>
-                    <div class="card-info">
-                        <h3>Pending Requests</h3>
-                        <p>15</p>
-                    </div>
-                </div>
+               
             </div>
         </section>
 

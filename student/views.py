@@ -20,7 +20,7 @@ def student(request):
         'students': students,
         'search_query': search_query,
         'total_students': students_records.objects.count(),
-        'total_fees': students_records.objects.aggregate(Sum('fee_paid'))['fee_paid__sum'] or 0,
+        'pending_fees': students_records.objects.aggregate(Sum('pending_fee'))['pending_fee__sum'] or 0,
     })
 
 # Add Student
@@ -37,6 +37,7 @@ def add_student_view(request):
             branch = request.POST.get('branch', '')
             year_raw = request.POST.get('year')
             fee_paid_raw = request.POST.get('fee_paid', '0')
+
 
             fee_paid = int(fee_paid_raw) if fee_paid_raw.isdigit() else 0
             year = int(year_raw) if year_raw and year_raw.isdigit() else 1
