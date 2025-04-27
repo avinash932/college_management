@@ -83,6 +83,13 @@
         
         .badge-paid {
             background-color: var(--success-color);
+            text-transform: capitalize;
+        }
+        
+        .badge-unpaid {
+            background-color: var(--danger-color);
+            text-transform: capitalize;
+
         }
         
         .badge-pending {
@@ -124,19 +131,7 @@
                     <h1><i class="bi bi-cash-stack"></i> Fee Management System</h1>
                     <p class="mb-0">Manage student fees and payments efficiently</p>
                 </div>
-                <div class="col-md-6 text-md-end">
-                    <div class="dropdown">
-                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-circle"></i> Admin User
-                        </bu tton>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Profile</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Settings</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
-                        </ul>
-                    </div>
-                </div>
+                
             </div>
         </div>
         
@@ -148,8 +143,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <h5 class="card-title">Total Fees</h5>
-                                <h2 class="mb-0">₹12,45,800</h2>
-                                <p class="mb-0">All students</p>
+                                <h2 class="mb-0">{{total_fees}}</h2>
                             </div>
                             <div class="card-icon">
                                 <i class="bi bi-wallet2"></i>
@@ -164,8 +158,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <h5 class="card-title">Paid Fees</h5>
-                                <h2 class="mb-0">₹8,76,500</h2>
-                                <p class="mb-0">70% collected</p>
+                                <h2 class="mb-0">{{paid_fees}}</h2>
                             </div>
                             <div class="card-icon">
                                 <i class="bi bi-check-circle"></i>
@@ -180,8 +173,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <h5 class="card-title">Pending Fees</h5>
-                                <h2 class="mb-0">₹3,69,300</h2>
-                                <p class="mb-0">128 students</p>
+                                <h2 class="mb-0">{{ pending_fees }}</h2>
                             </div>
                             <div class="card-icon">
                                 <i class="bi bi-hourglass-split"></i>
@@ -195,12 +187,11 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <h5 class="card-title">Overdue Fees</h5>
-                                <h2 class="mb-0">₹1,24,500</h2>
-                                <p class="mb-0">42 students</p>
+                                <h5 class="card-title">Total students</h5>
+                                <h2 class="mb-0">{{total_students}}</h2>
                             </div>
                             <div class="card-icon">
-                                <i class="bi bi-exclamation-triangle"></i>
+                                <i class="bi bi-people"></i>
                             </div>
                         </div>
                     </div>
@@ -279,17 +270,16 @@
                     <thead class="table-light">
                         <tr>
                             <th>#</th>
-                            <th>Student ID</th>
+                            <th>Student Roll</th>
                             <th>Name</th>
                             <th>Course</th>
                             <th>Branch</th>
-                            <th>Year</th>
-                            <th>Total Fees</th>
-                            <th>Paid</th>
-                            <th>Balance</th>
-                            <th>Due Date</th>
-                            <th>Status</th>
-                            <th>Actions</th>
+                            <th>Contact</th>
+                            <th>Total fees</th>
+                            <th>paid fees</th>
+                            <th>pending fees</th>
+                            <th>status</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -299,22 +289,23 @@
                             <td>{{ student.stu_id }}</td>
                             <td>{{ student.name }}</td>
                             <td>{{ student.course }}</td>
-                            <td>{{ student.address }}</td>
+                            <td>{{ student.branch }}</td>       
+                            <td>{{ student.contact }}</td>       
+                            <td>{{ student.fee_total }}</td>       
+                            <td>{{ student.fee_paid }}</td>       
+                            <td>{{ student.pending_fee }}</td>
                             
-                            <!-- Replace static values below with actual model fields if available -->
-                            <td>3</td> <!-- Static semester/year placeholder -->
-                            <td>₹85,000</td> <!-- Static total fee placeholder -->
-                            <td>₹85,000</td> <!-- Static paid amount placeholder -->
-                            <td>₹0</td> <!-- Static due amount placeholder -->
-                            <td>15 Aug 2023</td> <!-- Static payment date placeholder -->
+                            {% if student.pending_fee == 0 %}
+                                
+                            <td>
+                                <span class="badge badge-paid">paid</span> <!-- You can use conditions for status -->
+                            </td>
+                            {% else %} 
+                            <td>
+                                <span class="badge badge-unpaid">unpaid</span> <!-- You can use conditions for status -->
+                            </td>
+                            {% endif %}
                             
-                            <td>
-                                <span class="status-indicator paid"></span> 
-                                <span class="badge badge-paid">Paid</span> <!-- You can use conditions for status -->
-                            </td>
-                            <td>
-                                <a href="{% url 'edit_student' student.stu_id %}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></a>
-                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>

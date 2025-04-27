@@ -80,6 +80,7 @@ def edit_student(request, student_id):
         student.course = request.POST.get('course')
         student.contact = request.POST.get('phone')
         student.email = request.POST.get('email')
+        student.branch= request.POST.get('branch')
         student.address = request.POST.get('address')
         student.fee_paid = request.POST.get('fee_paid')
         student.save()
@@ -116,5 +117,10 @@ def fee_view(request):
         queryset = queryset.filter(fee_status__iexact=status)
 
     return render(request, 'fee.html', {
-        'fees': queryset
+        'fees': queryset,
+        'pending_fees': students_records.objects.aggregate(Sum('pending_fee'))['pending_fee__sum'] or 0,
+        'paid_fees': students_records.objects.aggregate(Sum('fee_paid'))['fee_paid__sum'] or 0,
+        'total_fees':students_records.objects.aggregate(Sum('fee_total'))['fee_total__sum'] or 0,
+        'total_students':students_records.objects.count()
+        
     })

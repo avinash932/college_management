@@ -18,6 +18,9 @@ class students_records(models.Model):
     def save(self, *args, **kwargs):
         self.pending_fee = 80000 - int(self.fee_paid)
         super().save(*args, **kwargs)
+        
+ 
+        
 
     def __str__(self):
         return self.name
