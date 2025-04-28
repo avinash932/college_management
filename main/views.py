@@ -34,8 +34,15 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
+            messages.success(request, "Login successful.")
             return redirect('index')
+        
+        
+        else:             # login error
+            messages.error(request, "Invalid username or password.")
     return render(request, 'login.html')
+
+
 
 def register_view(request):
     if request.method == 'POST':

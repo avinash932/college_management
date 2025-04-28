@@ -274,8 +274,13 @@
 
 <body>
     <!-- Header -->
+   
+    
+        
+  
+        
     {% include 'layout/base.html' %}
-
+    
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -285,7 +290,9 @@
                     universities. Manage students, faculty, courses, and more with ease.</p>
                     
                     {% if user.is_authenticated %}
-                        
+                    
+                    
+                    
                     <a href="{% url 'logout' %}" class="btn" style="margin-right: 1rem;">logout</a>
                     {% else %}
                     <a href="{% url 'login' %}" class="btn" style="margin-right: 1rem;">login</a>
@@ -356,7 +363,7 @@
                         <p>Get powerful insights with our comprehensive analytics and reporting tools.</p>
                     </a>
                 </div>
-                <div class="feature-card">
+               
 
                     <div class="feature-card">
                         <a href="{% url 'events' %}" style="text-decoration: none;">
@@ -367,7 +374,7 @@
                             <p>Get powerful insights with our comprehensive analytics and reporting tools.</p>
                         </a>
                     </div>
-                </div>
+            
             </div>
     </section>
 
@@ -438,7 +445,7 @@
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://in.linkedin.com/company/smslucknow"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>

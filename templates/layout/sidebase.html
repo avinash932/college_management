@@ -50,7 +50,8 @@
         .sidebar .logo {
             display: flex;
             align-items: center;
-            padding: 0 20px 30px;
+            padding: 0 40px 30px 40px;
+            margin: 1rem;
             font-size: 24px;
             font-weight: bold;
         }
@@ -58,6 +59,7 @@
         .sidebar .logo i {
             margin-right: 10px;
             font-size: 28px;
+
         }
 
         .sidebar ul {
@@ -67,6 +69,7 @@
         .sidebar ul li {
             padding: 12px 20px;
             transition: 0.3s;
+            margin: 1rem;
         }
 
         .sidebar ul li:hover {
@@ -178,8 +181,8 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="logo">
-            <i class="fas fa-graduation-cap"></i>
-            <span>EduManage</span>
+            <i class="fas fa-graduation-cap "></i>
+            <span>S.M.S</span>
         </div>
         <ul>
             <li class="active"><a href="{% url 'index' %}"><i class="fas fa-home"></i>Home</a></li>
@@ -193,8 +196,8 @@
 
             {% endif %}
             <li><a href="{% url 'courses' %}"><i class="fas fa-chart-bar"></i>courses</a></li>
-            <li><a href="{% url 'placement' %}"><i class="fas fa-cog"></i>Placements</a></li>
-            <li><a href="{% url 'events' %}"><i class="fas fa-cog"></i>Events</a></li>
+            <li><a href="{% url 'placement' %}"><i class="fas fa-chart-line"></i>Placements</a></li>
+            <li><a href="{% url 'events' %}"><i class="fas fa-star"></i>Events</a></li>
         </ul>
     </div>
 
